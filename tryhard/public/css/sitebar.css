@@ -1,0 +1,138 @@
+
+.sbw-customizer .sbw-customizer-content {
+    position: relative;
+    height: calc(100% - 64px);
+    overflow-y: auto;
+    padding: 1.5rem;
+}
+.sbw-customizer {
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    width: 20rem;
+    height: 100vh;
+    text-align: left;
+    background: #fff;
+    -webkit-transition: right .5s;
+    transition: right .5s;
+    box-shadow: -0.15rem 0 1.75rem 0 rgba(34,39,46,.15);
+    transition: all 0.3s;
+    display: block;
+}
+.sbw-customizer.sbw-customizer-open{
+    right: 0;
+}
+.sbw-customizer .sbw-customizer-toggler{
+    position: absolute;
+    top: 8.0rem;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    left: -3rem;
+    width: 3rem;
+    height: 3rem;
+    border: 0;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(34,39,46,.15);
+    color: #001500;
+    background-color: #fff;
+    border-radius: .35rem 0 0 .35rem;
+}
+.shadow {
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(31, 45, 65, 0.15) !important;
+}
+.sbw-customizer-heading {
+    padding: 1.5rem;
+    font-size: .7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: #a7aeb8;
+    display: block;
+}
+.sbw-customizer-toggler{
+    background: url("/public/icon/notebook-a-icon.svg") no-repeat;
+}
+.sbw-customizer.active {
+    right: -320px;
+}
+.sbw-customizer-content {
+    position: relative;
+    height: calc(100% - 64px);
+    overflow-y: auto;
+    padding: 1.5rem;
+}
+.sbw-customizer-content > ul > li > a{
+    text-decoration: underline;
+}
+/* sitebar user*/
+
+.sbur-customizer .sbur-customizer-content {
+    position: relative;
+    height: calc(100% - 64px);
+    overflow-y: auto;
+    padding: 1.5rem;
+}
+.sbur-customizer {
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    width: 20rem;
+    height: 100vh;
+    text-align: left;
+    background: #fff;
+    -webkit-transition: right .5s;
+    transition: right .5s;
+    box-shadow: -0.15rem 0 1.75rem 0 rgba(34,39,46,.15);
+    transition: all 0.3s;
+    display: block;
+}
+.sbur-customizer.sbur-customizer-open{
+    right: 0;
+}
+.sbur-customizer .sbur-customizer-toggler{
+    position: absolute;
+    top: 11.4rem;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    left: -3rem;
+    width: 3rem;
+    height: 3rem;
+    border: 0;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(34,39,46,.15);
+    color: #001500;
+    background-color: #fff;
+    border-radius: .35rem 0 0 .35rem;
+}
+.shadow {
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(31, 45, 65, 0.15) !important;
+}
+.sbur-customizer-heading {
+    padding: 1.5rem;
+    font-size: .7rem;
+    font-weight: 800;
+    letter-spacing: .05em;
+    color: #a7aeb8;
+    display: block;
+}
+.sbur-customizer-toggler{
+    background-image: url("/public/icon/user-icon.svg");
+}
+.sbur-customizer.active {
+    right: -320px;
+}
+.sbur-customizer-content {
+    position: relative;
+    height: calc(100% - 64px);
+    overflow-y: auto;
+    padding: 1.5rem;
+}
+.sbur-customizer-content > ul > li > a{
+    text-decoration: underline;
+}

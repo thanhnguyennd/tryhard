@@ -1,0 +1,107 @@
+.user-avatar img {
+    max-width: 100px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    float: left;
+    margin-right: 20px;
+}
+.fbt-resize {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    -webkit-transition-duration: .5s;
+    -moz-transition-duration: .5s;
+    -o-transition-duration: .5s;
+}
+.img-thumb {
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    position: relative;
+    overflow: hidden;
+    display: block;
+    background: #f6f6f6;
+}
+.fbt-vc-inner .post-item {
+    margin-bottom: 25px;
+}
+.fbt-vc-inner .img-thumb {
+    height: 200px;
+}
+.post-info {
+    font-size: 11px;
+    color: #777;
+}
+.post-info span {
+    margin-right: 5px;
+    float: left;
+}
+.fbt-vc-inner .post-content h3 {
+    margin: 10px 0 8px;
+    font-size: 19px;
+}
+a:link {
+    -webkit-tap-highlight-color: #FF5E99;
+}
+a:hover{
+    text-decoration: none!important;
+}
+.fbt-related-posts .post-content .post-info .rating {
+    color: #f7ca18;
+}
+.post-item:hover .post-content h3 {
+    color: #e89319;
+    text-decoration: none!important;
+}
+.container-fluid.main{
+    background-color: white;
+    padding-top: 20px;
+}
+.post-share {
+    float: left;
+    width: 100%;
+    margin: 0 auto 20px;
+    text-align: center;
+}
+.post-share button svg{
+    margin-right: 5px;
+}
+.fbt-vc-inner .small .img-thumb {
+    height: 70px;
+}
+.avatar {
+    float: left;
+}
+.avatar img {
+    max-width: 100px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    float: left;
+    margin-right: 20px;
+}
+.fbt-contact-box #contact-form input[type="text"], .fbt-contact-box #comment-form input[type="text"], .fbt-contact-box #contact-form textarea, .fbt-contact-box #comment-form textarea {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    background: #f1f4f9;
+    color: #333333;
+    font-size: 13px;
+    outline: none;
+    border: 1px solid #cccccc;
+    margin: 0 0 16px;
+    transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+}
