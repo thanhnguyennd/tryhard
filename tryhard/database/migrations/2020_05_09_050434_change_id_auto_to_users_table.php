@@ -14,7 +14,7 @@ class ChangeIdAutoToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->increments('id')->change();
+            $table->id()->increments()->change();
         });
     }
 

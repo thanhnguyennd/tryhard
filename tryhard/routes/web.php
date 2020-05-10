@@ -85,3 +85,13 @@ Route::middleware('auth:api')->get('/view-cache',function (){
     $exitCode = \Illuminate\Support\Facades\Artisan::call('view:cache');
     return 'View cache cleared';
 });
+
+Route::group(['prefix' => 'sentences'], function () {
+    Route::get('/', 'SentenceController@index')->name('sentences.index');
+    Route::get('create', 'SentenceController@create')->name('sentences.create');
+    Route::get('edit', 'SentenceController@edit')->name('sentences.edit');
+    Route::post('update', 'SentenceController@update')->name('sentences.update');
+    Route::get('show', 'SentenceController@show')->name('sentences.show');
+    Route::post('store', 'SentenceController@store')->name('sentences.store');
+    Route::get('destroy/{id}', 'SentenceController@destroy')->name('sentences.destroy');
+});

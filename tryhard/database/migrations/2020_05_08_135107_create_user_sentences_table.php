@@ -14,7 +14,7 @@ class CreateUserSentencesTable extends Migration
     public function up()
     {
         Schema::create('sentences', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id()->increments();
             $table->string('text');
             $table->bigInteger('type_id')->default(1);
             $table->string('tag')->nullable($value = true);

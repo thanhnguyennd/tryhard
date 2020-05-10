@@ -14,7 +14,7 @@ class CreateUserWordsTable extends Migration
     public function up()
     {
         Schema::create('user_words', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id()->increments();
             $table->integer('user_id');
             $table->integer('post_id');
             $table->string('word_content')->nullable($value = true);
