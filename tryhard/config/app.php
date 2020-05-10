@@ -230,6 +230,7 @@ return [
         // new register
         'EnvatoUser' => App\Helpers\Envato\User::class,
         'EnvatoStr' => App\Helpers\Envato\StringCustom::class,
+        'UrlId' => App\Helpers\Envato\UrlId::class,
 
     ],
 

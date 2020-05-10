@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Helpers\Envato\UrlId;
 
 class UserWordController extends Controller
 {
@@ -123,8 +124,13 @@ class UserWordController extends Controller
                 ->where('user_id', Auth::id())
                 ->orderBy('updated_at', 'desc')
                 ->get();
+            foreach ($list_words as $word){
+                $post_id = $word->post_id;
+                $word->post_id = UrlId::encrypt($post_id, 1);
+            };
             return response()->json(['success'=>$list_words]);
         }
+
         return response()->json(['success'=>'false']);
     }
     public function data($search_key = "")

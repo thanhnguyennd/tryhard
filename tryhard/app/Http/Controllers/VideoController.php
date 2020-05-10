@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Envato\UrlId;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
+use Hashids\Hashids;
 use App\Post;
 use App\User_word;
 
@@ -18,15 +20,16 @@ class VideoController extends Controller
      */
     public function index($id)
     {
-        $post = Post::find($id);
+        $post = Post::find(UrlId::decrypt($id));
         $user_hot_posts = DB::table('posts')
-                ->join('users', 'users.id', '=', 'posts.user_id')
-                ->select('posts.*', 'users.name as user_name')
-                ->where('user_id', $post->user_id)
-                ->orderBy('view_count','ASC')
-                ->skip(0)
-                ->take(5)
-                ->get();
+            ->join('users', 'users.id', '=', 'posts.user_id')
+            ->select('posts.*', 'users.name as user_name')
+            ->where('user_id', $post->user_id)
+            ->where('is_publish', '=', 1)
+            ->orderBy('view_count','ASC')
+            ->skip(0)
+            ->take(5)
+            ->get();
         return $this->view('videos.index',compact('post','user_hot_posts'));
     }
     /**
@@ -67,20 +70,24 @@ class VideoController extends Controller
             $data['user_id'] = Auth::id();
             if($data['is_update'] === false){
                 unset($data['is_update']);
+                $wordRecord = DB::table('user_words')
+                    ->select('user_words.id','user_words.word_content','user_words.word_description')
+                    ->where(
+                        [
+                            ['user_id', '=', Auth::id()],
+                            ['id', '=', $data['id']],
+                        ]
+                    );
+                $wordRecord->update($data);
                 return response()->json(['success'=>'update success.']);
             }
             else{
                 unset($data['is_update']);
-                $wordRecord = DB::table('user_words')
-                ->select('user_words.id','user_words.word_content','user_words.word_description')
-                ->where(
-                    [
-                        ['user_id', '=', Auth::id()],
-                        ['id', '=', $data['id']],
-                    ]
-                );
-                $id = User_word::create($data)->id;
-                $wordRecord->update($data);
+                $user_word = User_word::create($data);
+                $id = $user_word->id;
+                $data["encrypt_id"] = UrlId::encrypt($id, 3);
+                $user_word->update(["encrypt_id" => UrlId::encrypt($id, 3)]);
+
                 return response()->json(['success'=>'insert success.','id' => $id]);
             }
         }

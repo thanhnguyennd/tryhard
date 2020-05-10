@@ -15,6 +15,7 @@ class CreateUserWordsTable extends Migration
     {
         Schema::create('user_words', function (Blueprint $table) {
             $table->id()->increments();
+            $table->string('encrypt_id')->nullable($value = true);
             $table->integer('user_id');
             $table->integer('post_id');
             $table->string('word_content')->nullable($value = true);

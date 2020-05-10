@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Envato\UrlId;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Post;
@@ -55,6 +56,12 @@ class HomeController extends Controller
             ->where('is_publish', '=', 1)
             ->skip(12 * $page_num)->take(12)
             ->get();
+        foreach ($posts as $row){
+            $id = $row->id;
+            $user_id = $row->user_id;
+            $row->id = UrlId::encrypt($id, 1);
+            $row->user_id = UrlId::encrypt($user_id, 0);
+        };
         return response()->json(['posts'=>$posts]);
     }
     public function ajaxRequestSearch($page_num, $key_search)
@@ -92,6 +99,12 @@ class HomeController extends Controller
                     ->orWhere('content', 'like', '%'.$key_search.'%');
             })
             ->paginate(12);
+        foreach ($posts as $row){
+            $id = $row->id;
+            $user_id = $row->user_id;
+            $row->id = UrlId::encrypt($id, 1);
+            $row->user_id = UrlId::encrypt($user_id, 0);
+        };
         $key = $key_search;
         return $this->view('search',compact('posts', 'key'));
     }

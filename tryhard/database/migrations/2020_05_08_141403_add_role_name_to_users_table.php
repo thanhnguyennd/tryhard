@@ -15,6 +15,7 @@ class AddRoleNameToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('role_name')->default('viewer');
+            $table->string('encrypt_id')->nullable($value = true);
         });
     }
 

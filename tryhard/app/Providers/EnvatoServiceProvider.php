@@ -15,6 +15,7 @@ class EnvatoServiceProvider extends ServiceProvider
     {
         require_once app_path() . '/Helpers/Envato/User.php';
         require_once app_path() . '/Helpers/Envato/StringCustom.php';
+        require_once app_path() . '/Helpers/Envato/UrlId.php';
     }
 
     /**

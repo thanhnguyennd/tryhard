@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
 use \Datetime;
+use App\Helpers\Envato\UrlId;
 
 class PostController extends Controller
 {
@@ -75,7 +77,9 @@ class PostController extends Controller
             request()->image_thumb->move(public_path('images/video_thumbs/'), $imageName);
             $data['image_thumb'] = $imageName;
         }
-        Post::create($data);
+        $data['user_id'] = Auth::user()->id;
+        $post = Post::create($data);
+        $post->update(["encrypt_id" => UrlId::encrypt($post->id, 1)]);
 
         return redirect()->route('posts.index')
                         ->with('success','Post created successfully.');

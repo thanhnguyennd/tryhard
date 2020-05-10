@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Envato\UrlId;
 use App\User_post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -68,8 +69,9 @@ class UserPostController extends Controller
             $data['image_thumb'] = $imageName;
         }
         $data['user_id'] = Auth::user()->id;
-        User_post::create($data);
-   
+        $user_post = User_post::create($data);
+        $user_post->update(["encrypt_id" => UrlId::encrypt($user_post->id, 2)]);
+
         return redirect()->route('user_posts.index')
                         ->with('success','Post created successfully.');
     }
@@ -120,7 +122,7 @@ class UserPostController extends Controller
             $data['image_thumb'] = $imageName;
         }
         $user_post->update($data);
-  
+
         return redirect()->route('user_posts.index')
                         ->with('success','Post updated successfully');
     }

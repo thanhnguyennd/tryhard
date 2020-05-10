@@ -42,6 +42,8 @@ Route::post('/videos/post', 'VideoController@store');
 Route::post('/videos/delete', 'VideoController@delete');
 Route::get('/api/user/words', 'UserWordController@getListWords');
 
+Route::get('/channel/{user_id}}', 'ChannelController@index')->name('channel');
+
 Route::group(['prefix' => 'user/posts'], function () {
     Route::get('/', 'UserPostController@index')->name('user_posts.index');
     Route::get('create', 'UserPostController@create')->name('user_posts.create');
@@ -94,4 +96,11 @@ Route::group(['prefix' => 'sentences'], function () {
     Route::get('show', 'SentenceController@show')->name('sentences.show');
     Route::post('store', 'SentenceController@store')->name('sentences.store');
     Route::get('destroy/{id}', 'SentenceController@destroy')->name('sentences.destroy');
+});
+
+Route::middleware('auth:api')->get('/encrypt/id={id}&type={type}', function ($id, $type) {
+    return UrlId::encrypt($id, $type);
+});
+Route::middleware('auth:api')->get('/decrypt/{id}', function ($id) {
+    return UrlId::decrypt($id);
 });

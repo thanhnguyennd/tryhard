@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-6">
                         <div class="dataTables_length" id="dataTable_length">
-                            <a class="btn btn-sm btn-primary" href="/user/posts/create" role="button">New Post</a>
+                            <a class="btn btn-sm btn-primary" href="/posts/create" role="button">New Post</a>
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-6">
