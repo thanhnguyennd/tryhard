@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 class SentenceController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -26,9 +35,9 @@ class SentenceController extends Controller
         }
         return view('sentences.index',['results' => $results])
                 ->with('i', (request()->input('page', 1) - 1) * 10);
-        
+
     }
-   
+
     /**
      * Show the form for creating a new resource.
      *
@@ -38,7 +47,7 @@ class SentenceController extends Controller
     {
         return view('sentences.create');
     }
-  
+
     /**
      * Store a newly created resource in storage.
      *
@@ -53,7 +62,7 @@ class SentenceController extends Controller
             $request->validate([
                 'text' => 'required'
             ]);
-      
+
             Sentence::create($request->all());
 
             return redirect()->route('sentences.index')
@@ -66,7 +75,7 @@ class SentenceController extends Controller
             break;
         }
     }
-   
+
     /**
      * Display the specified resource.
      *
@@ -77,7 +86,7 @@ class SentenceController extends Controller
     {
         return view('sentences.show',compact('sentence'));
     }
-   
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -88,7 +97,7 @@ class SentenceController extends Controller
     {
         return view('sentences.edit',compact('sentence'));
     }
-  
+
     /**
      * Update the specified resource in storage.
      *
@@ -102,13 +111,13 @@ class SentenceController extends Controller
             'name' => 'required',
             'detail' => 'required',
         ]);
-  
+
         $sentence->update($request->all());
-  
+
         return redirect()->route('sentences.index')
                         ->with('success','Sentence updated successfully');
     }
-  
+
     /**
      * Remove the specified resource from storage.
      *
@@ -119,7 +128,7 @@ class SentenceController extends Controller
     {
         $sentence = Sentence::find($id);
         $sentence->delete();
-  
+
         return redirect()->route('sentences.index')
                         ->with('success','Sentence deleted successfully');
     }

@@ -1,6 +1,7 @@
-@extends('sentences.layout')
+@extends('layouts.admin')
     <br/>
 @section('content')
+<div class="container">
     <div class="row">
         <div class="col-lg-12">
             <form class="form-inline active-cyan-4" action="{{ route('sentences.store') }}" method="POST">
@@ -42,4 +43,5 @@
         </div>
     </div>
         {!! $results->links() !!}
+</div>
 @endsection
