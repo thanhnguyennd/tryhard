@@ -8,10 +8,8 @@
     <link rel="icon" type="image/x-icon" href="/images/logo.png">
     <!--<link href = {{ asset("/public/css/bootstrap/bootstrap.css") }} rel="stylesheet" />
     <link href = {{ asset("/public/css/bootstrap/bootstrap.min.css") }} rel="stylesheet" />-->
-	    
+
 	<script src={{ asset("/public/js/jquery/jquery-3.4.1.min.js") }} ></script>
-    <script src={{ asset("/public/js/bootstrap/bootstrap.bundle.min.js") }}></script>
-    <script src={{ asset("/public/js/popper/popper.min.js") }} ></script>
     <!-- Font Awesome -->
 	<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css" media="screen">
 
@@ -43,17 +41,10 @@
 						<div class="row">
 							<!-- Newsticker start -->
 							<div class="col-md-2 col-sm-3 col-xs-5">
-								<div class="headline-title">				
+								<div class="headline-title">
 									<h5>TRY-HARD.INFO</h5>
 								</div>
 							</div>
-							<div class="col-md-7 col-sm-9 col-xs-7 no-padding">
-								<ul class="ticker clearfix" style="position: relative; width: 642px; height: 38px; overflow: hidden;">
-									@foreach ($hot_posts as $post)
-									<li style="position: absolute; top: 38px; left: 0px; display: none; z-index: 7; opacity: 1; width: 642px; height: 38px;"><a href="{{ route('videos',$post->id) }}">{{$post->title}}</a></li>
-									@endforeach
-								</ul>
-							</div><!-- Newsticker end -->
 							<!-- Social Icons Start -->
 							<div class="col-md-3 hidden-sm hidden-xs">
 								<div class="fa-icon-wrap">
@@ -70,7 +61,7 @@
 					</div>
 				</div>
 			</section><!-- Headline End -->
-			
+
 			<!-- Header Start -->
 			<section class="header-wrapper clearfix">
 				<div class="container">
@@ -90,11 +81,11 @@
 					</div>
 				</div>
 			</section><!-- Header End -->
-			
+
 			<!-- Menu Navigation Start -->
 			<div class="navbar dark navbar-default megamenu clearfix">
 			</div><!-- Menu Navigation End -->
-			
+
 			<!-- Main Content Start -->
 			<section id="main-content" class="clearfix" style="transform: none;">
 				<div class="container" style="transform: none;">
@@ -103,7 +94,7 @@
 						@yield('content')
 						<!-- Post Outer End -->
 					</div>
-				</div>		
+				</div>
 			</section><!-- Main Content End -->
 			<!-- Footer Sidebar Start -->
 			<section class="footer-wrapper clearfix">
@@ -161,13 +152,16 @@
 	 </div>
 	 @endguest
 	<div class="navbar-fixed-bottom"></div>
-	<script type="text/javascript" src="/public//js/common.js"></script>
-	<script type="text/javascript" src="/public//js/home/jquery-1.12.3.min.js"></script>
-	<script type="text/javascript" src="/public//js/home/owl.carousel.min.js"></script>
-	<script type="text/javascript" src="/public//js/home/cycle.all.js"></script>
-	<script type="text/javascript" src="/public//js/home/bootstrap.min.js"></script>
-	<script type="text/javascript" src="/public//js/home/resizesensor.min.js"></script>
-	<script type="text/javascript" src="/public//js/home/theia-sticky-sidebar.js"></script>
-	<script type="text/javascript" src="/public//js/home/main.js"></script>
+     <script src={{ asset("/public/admin/bootstrap.bundle.min.js") }}></script>
+     <script src={{ asset("/public/js/popper/popper.min.js") }}></script>
+     <script src={{ asset("/public/js/common.js") }} ></script>
+     <script src={{ asset("/public/js/home/bootstrap.min.js") }} ></script>
+     {{--	<script src={{ asset("/public/js/bootstrap/bootstrap.min.js") }} ></script>--}}
+     <script src={{ asset("/public/admin/sb-customizer.js") }}></script>
+{{--	<script type="text/javascript" src="/public//js/home/owl.carousel.min.js"></script>--}}
+{{--	<script type="text/javascript" src="/public//js/home/cycle.all.js"></script>--}}
+{{--	<script type="text/javascript" src="/public//js/home/resizesensor.min.js"></script>--}}
+{{--	<script type="text/javascript" src="/public//js/home/theia-sticky-sidebar.js"></script>--}}
+{{--	<script type="text/javascript" src="/public//js/home/main.js"></script>--}}
 </body>
 </html>

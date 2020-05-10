@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    
+
     <div class="card-header">Your posts</div>
     <div class="card-body">
         <div class="datatable table-responsive">
@@ -102,7 +102,7 @@
             </table>
           </div>
         </div>
-        
+
         <div class="row">
           <div class="col-sm-12 col-md-5">
             <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing Page {{ $user_posts->currentPage() }} of {{ $user_posts->total() }}

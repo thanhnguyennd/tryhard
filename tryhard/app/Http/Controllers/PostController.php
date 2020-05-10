@@ -191,11 +191,4 @@ class PostController extends Controller
     {
       return substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, $limit);
     }
-    function roleAdmin(){
-        if(Auth::user()->role_name != "administrator"){
-            Auth::logout();
-            return false;
-        }
-        return  true;
-    }
 }

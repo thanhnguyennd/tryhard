@@ -24,7 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/search/{key_search}', 'HomeController@search')->name('search');
 Route::post('/postSearch', 'HomeController@postSearch')->name('home.search');
 
-Route::get('/videos/id/{id}', 'VideoController@index')->name('videos');
+Route::get('/videos/{id}', 'VideoController@index')->name('videos');
 
 
 Route::group(['prefix' => 'posts'], function () {
@@ -38,6 +38,8 @@ Route::group(['prefix' => 'posts'], function () {
     Route::post('publish/{id}', 'PostController@publish')->name('posts.publish');
 });
 
+Route::post('/videos/post', 'VideoController@store');
+Route::post('/videos/delete', 'VideoController@delete');
 Route::get('/api/user/words', 'UserWordController@getListWords');
 
 Route::group(['prefix' => 'user/posts'], function () {
@@ -67,4 +69,19 @@ Route::get('/api/user/data', 'UserWordController@getdata');
 Route::get('/api/load/posts/{page_num}', 'HomeController@ajaxRequestPost');
 Route::get('/api/search/{page_num}/{key_search}', 'HomeController@ajaxRequestSearch');
 
-
+Route::middleware('auth:api')->get('/route-cache',function (){
+    $exitCode = \Illuminate\Support\Facades\Artisan::call('route:cache');
+    return 'Route cache cleared';
+});
+Route::middleware('auth:api')->get('/config-cache',function (){
+    $exitCode = \Illuminate\Support\Facades\Artisan::call('config:cache');
+    return 'Config cache cleared';
+});
+Route::middleware('auth:api')->get('/clear-cache',function (){
+    $exitCode = \Illuminate\Support\Facades\Artisan::call('clear:cache');
+    return 'Clear cache cleared';
+});
+Route::middleware('auth:api')->get('/view-cache',function (){
+    $exitCode = \Illuminate\Support\Facades\Artisan::call('view:cache');
+    return 'View cache cleared';
+});

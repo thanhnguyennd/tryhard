@@ -9,9 +9,9 @@
 						<h2>About Us</h2>
 					</div>
 					<img class="img-responsive" src="/public/images/Magazine/logo.png" alt="logo">
-					<p><span class="fbt-tooltip" data-toggle="tooltip" title="" data-original-title="Favorite Blogger Templates">fbtemplates</span> in Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-					Nunc interdum metus vitae dui tempus ornare. Nulla facilisi. 
-					Vivamus id eros sit amet lorem condimentum ultrices. 
+					<p><span class="fbt-tooltip" data-toggle="tooltip" title="" data-original-title="Favorite Blogger Templates">fbtemplates</span> in Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					Nunc interdum metus vitae dui tempus ornare. Nulla facilisi.
+					Vivamus id eros sit amet lorem condimentum ultrices.
 					Phasellus imperdiet, magna at sodales dictum, nibh mauris tempor nulla, in consequat est purus eget.</p>
 					<!-- Social Icons Start -->
 					<div class="fa-icon-wrap">
@@ -125,15 +125,13 @@
 					<div class="flickr-gallery clearfix">
 						<div class="row">
 							<div class="gallery-img">
-								@foreach ($flickr_photos as $post)
 								<div class="col-xs-4 padding-1">
 									<div class="post-item clearfix">
 										<div class="img-thumb">
-											<a href="{{ route('videos',$post->id) }}"><div class="fbt-resize" style="background-image: url(/public/images/video_thumbs/{{ $post->image_thumb }})"></div></a>
+											<a href="#"><div class="fbt-resize" style="background-image: url(/public/images/video_thumbs/test.png)"</a>
 										</div>
 									</div>
 								</div>
-								@endforeach
 							</div>
 						</div>
 					</div>

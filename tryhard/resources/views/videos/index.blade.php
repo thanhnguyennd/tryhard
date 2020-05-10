@@ -5,13 +5,12 @@
 	<div class="row outer-wrapper clearfix" style="transform: none;">
 		<!-- Post Wrapper Start -->
 		<div class="fbt-col-lg-9 col-md-8 col-sm-6 post-wrapper single-post" style="transform: none;">
-			
+
 			<div class="clearfix">
 				<div class="img-crop">
 					{!! $post->iframe_syntax !!}
 				</div><!-- img-crop -->
 			</div>
-			
 			<div class="row" style="transform: none;">
 				<!-- Post Content Start -->
 				<div class="fbt-col-lg-12 col-md-12 single-post-container clearfix">
@@ -19,18 +18,18 @@
 						<div class="col-md-12">
 							<!-- Post Share Start -->
 							<div class="post-share clearfix">
-								<button class="btn btn-facebook">
-									<i class="fab fa-facebook-f"></i> Facebook
-								</button>
-								<button class="btn btn-github">
+								<a href="https://www.facebook.com/Tryhard-450850188425399/" target="_blank" class="btn btn-facebook">
+                                    <i class="fab fa-facebook-f"></i> Facebook
+								</a>
+								<a href="#" class="btn btn-github">
 									<i class="fab fa-github"></i> GitHub
-								</button>
-								<button class="btn btn-google">
+								</a>
+								<a href="#" class="btn btn-google">
 									<i class="fab fa-google"></i> Google
-								</button>
-								<button class="btn btn-twitter">
+								</a>
+								<a href="#" class="btn btn-twitter">
 									<i class="fab fa-twitter"></i> Twitter
-								</button>
+								</a>
 							</div><!-- Post Share End -->
 
 							<div class="clearfix"></div>
@@ -67,14 +66,14 @@
 									</button>
 								</form>
 							</div><!-- Comment Box End -->
-						
+
 						</div>
 					</div>
 				</div><!-- Post Content End -->
 			</div>
-			
+
 		</div><!-- Post Wrapper End -->
-		
+
 		<!-- Post Sidebar Start -->
 		<div class="fbt-col-lg-3 col-md-4 col-sm-6 post-sidebar clearfix" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
 			<div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; top: 25px; left: 830.828px;">
@@ -105,7 +104,7 @@
 				</div><!-- Sidebar Small List End -->
 			</div>
 		</div><!-- Post Sidebar End -->
-		
+
 	</div>
 	<!-- Post Outer End -->
 @endsection

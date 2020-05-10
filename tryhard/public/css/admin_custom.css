@@ -1,3 +1,6 @@
+#my-popover{
+    position: absolute;
+}
 .user-avatar img {
     max-width: 100px;
     -webkit-border-radius: 50%;
@@ -72,8 +75,11 @@ a:hover{
     margin: 0 auto 20px;
     text-align: center;
 }
-.post-share button svg{
+.post-share a svg{
     margin-right: 5px;
+}
+.post-share a{
+    color: white;
 }
 .fbt-vc-inner .small .img-thumb {
     height: 70px;

@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Auth;
 
 class Controller extends BaseController
 {
@@ -17,5 +18,12 @@ class Controller extends BaseController
         }
 
         return view($view_name, $arr);
+    }
+    function roleAdmin(){
+        if(Auth::user()->role_name != "administrator"){
+            Auth::logout();
+            return false;
+        }
+        return  true;
     }
 }

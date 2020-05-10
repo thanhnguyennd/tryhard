@@ -29,20 +29,20 @@ function fillDataSelected(){
     }
     popover.boxInit(textSelect, txtConvert, false);
 }
-var elementIsClickClose = false; 
+var elementIsClickClose = false;
 $("span[name='text']").mouseup(function(e) {
     var text = getSelectionText();
-    
+
     $("#my-popover").css("top",e.pageY);
     $("#my-popover").css("left",e.pageX + 10);
     if(text.length == 0)
     {
-        setTimeout(() => { 
+        setTimeout(() => {
             if (!elementIsClickClose){
                 $('[data-toggle="popover"]').popover('hide');
             }
         }, 10);
-        
+
         elementIsClickClose = false;
     }
     else{
@@ -50,6 +50,12 @@ $("span[name='text']").mouseup(function(e) {
         $('[data-toggle="popover"]').popover("show");
     }
 })
+// $("body").mouseup(function(e) {
+//     if(!elementIsClickClose){
+//         $('[data-toggle="popover"]').popover('hide');
+//     }
+//     elementIsClickClose = false;
+// })
 window.onload = function() {
   $('#txtSearch').focus();
   $("[data-toggle=popover]").popover({html:true})
@@ -65,14 +71,12 @@ const common = {
     init : function(){
         $(".img-crop > iframe").css('width', '100%');
         $(".img-crop > iframe").css('height', '380px');
-        
+
         // get url prame
         var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
             vars[key] = value;
-        }); 
-        
-        
-        //ajax using
+        });
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -159,7 +163,7 @@ const home ={
             "                    </a>\n" +
             "                </div>\n" +
             "                <div class=\"post-content\">\n" +
-            "                    <a href=\"http://blog.local:8080/videos/id/2\">\n" +
+            "                    <a href=\"\\videos\\" + id + "\">\n" +
             "                        <h3>"+ title +" </h3>\n" +
             "                    </a>\n" +
             "                    <div class=\"post-info clearfix\">\n" +
@@ -230,14 +234,15 @@ const popover ={
     boxInit : function(txtContent, txtDescription, isUpdate){
         if(txtContent.length > 0){
             var str_html_btn_del = "  <button id='btnDelete' onclick='popover.boxDelete(\"" + txtContent + "\")'>"
-                               + "  <i class='fa fa-trash'></i>"
+                               + "  <i class='fas fa-trash'></i>"
                                + "</button>";
             var str_html_box_new = txtContent
             + "  <a class='search' href='https://mazii.net/search?dict=javi&type=w&query="+ txtContent +"&hl=en-US' target='_blank' title='Search mazii'>"
             + "  <i aria-hidden='true' class='fa fa-search'></i>mazii</a>"
+            + "  <button class=\"ml-2 mb-1 close\" type=\"button\" name=\"close\" onclick=\"$(&quot;#my-popover&quot;).popover(&quot;hide&quot;);\"><span aria-hidden=\"true\">×</span></button>"
             + "  <input type='text' class='form-control' id='txtDescription' value='" + txtDescription + "' >"
             + "     <button id='btnSave' onclick='popover.boxSave(\"" + txtContent + "\"," + isUpdate + ")'>"
-            + "     <i aria-hidden='true' class='fa fa-save'></i>"
+            + "     <i class='fas fa-save'></i>"
             + "     </button>";
             var str_html_box = str_html_box_new;
             if(isUpdate){
@@ -245,13 +250,16 @@ const popover ={
             }
             $("#my-popover").removeAttr("data-content");
             $("#my-popover").attr("data-content",str_html_box
-            ); 
+            );
 
         }
     },
     boxSave : function(txtContent, isUpdate){
         if(txtContent.length > 0){
             var txtDescription = $('#txtDescription').val();
+            if(txtDescription.length == 0){
+                return false;
+            }
             $('[data-toggle="popover"]').popover('hide');
 
             var postId = common.getPostId();
@@ -270,7 +278,7 @@ const popover ={
                         localStorage.setItem(txtContent, data.id + "." + postId + "." +txtDescription);
                         popover.markText(txtContent);
                         popover.setToolTip();
-                        
+
                     }
                     else{
                         localStorage.setItem(txtContent, word_id + "." + postId + "." +txtDescription);
@@ -303,7 +311,7 @@ const popover ={
                 {
                     text = text.toString().replace(new RegExp(keytext, 'g'), "<span name='mark' class='text-primary text-underline' data-toggle=\"tooltip\" data-placement=\"top\" title=\""+ localStorage.getItem(keytext).split('.')[2] +"\" onclick='popover.boxShow(\""+keytext+ "\")' >"+keytext+"</span>");
                 }
-                text = text.toString().replace(decodeURIComponent(vars['key']), '<span class="text-primary text-underline"><b>'+decodeURIComponent(vars['key'])+'</b></span>'); 
+                text = text.toString().replace(decodeURIComponent(vars['key']), '<span class="text-primary text-underline"><b>'+decodeURIComponent(vars['key'])+'</b></span>');
             })
             $(this).text("");
             $(this).append(text);
@@ -317,15 +325,15 @@ const popover ={
             words.listWordsInit(keytext, localStorage.getItem(keytext).split('.')[2]);
         },
     setToolTip : function(){
-        setTimeout(function(){ 
-            $('[data-toggle="tooltip"]').tooltip(); 
+        setTimeout(function(){
+            $('[data-toggle="tooltip"]').tooltip();
         }, 1000);
     }
 }
 const kanji ={
     getKanji: function (text) {
-    var regex = /([\u3400-\u4dbf]|[\u4e00-\u9faf])+/g; 
-    //var text = "ノート円に円雨をかく。"; 
+    var regex = /([\u3400-\u4dbf]|[\u4e00-\u9faf])+/g;
+    //var text = "ノート円に円雨をかく。";
     if(regex.test(text)) {
         return text.match(regex);
     }
@@ -376,11 +384,11 @@ const storage = {
                     text = text.toString().replace(item, '<a class="text-danger"><b>'+item+'</b></a>');
                 }
             }
-            text = text.toString().replace(decodeURIComponent(vars['key']), '<span class="text-primary"><b>'+decodeURIComponent(vars['key'])+'</b></span>'); 
+            text = text.toString().replace(decodeURIComponent(vars['key']), '<span class="text-primary"><b>'+decodeURIComponent(vars['key'])+'</b></span>');
             $(this).text("");
-            $(this).append(text);   
+            $(this).append(text);
         });
-        
+
     }
 }
 const words ={
@@ -388,11 +396,11 @@ const words ={
         var txtkey = $("#boxSearch").val();
         var archive = storage.allStorage();
         $("#listWords").html("");
-        archive.find(function(element) { 
+        archive.find(function(element) {
             if(element.search(txtkey) != -1){
                 words.listWordsInit(element, localStorage.getItem(element).split('.')[2], localStorage.getItem(element).split('.')[1]);
-            }; 
-        }); 
+            };
+        });
         if(txtkey.length == 0){
             words.bindListWords();
         }
@@ -403,7 +411,7 @@ const words ={
         }
     },
     listWordsInit: function(content, description, post_id){
-        $("#listWords").append("<li><a href='/videos/id/"+ post_id +"' data-toggle=\"tooltip\" data-placement=\"top\" title=\""+ description +"\">"+ content + "</a></li>");
+        $("#listWords").append("<li><a href='/videos/"+ post_id +"' data-toggle=\"tooltip\" data-placement=\"top\" title=\""+ description +"\">"+ content + "</a></li>");
     },
     checkPost : function(chk){
         $("#listWords").html("");

@@ -40,7 +40,7 @@ class VideoController extends Controller
         return view('videos.ajaxRequest');
     }
 
-   
+
 
     /**
      * Create a new controller instance.
