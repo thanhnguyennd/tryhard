@@ -54,7 +54,7 @@
                                 <tr role="row" class="odd">
                                     <td class="sorting_1">{{ ++$i }}</td>
                                     <td>
-                                        <a href="{{ route('posts.show',Crypt::encrypt($post->id)) }}">
+                                        <a href="{{ route('posts.show',UrlId::encrypt($post->id,Config::get('constants.posts'))) }}">
                                             @if(strlen($post->image_thumb) > 0)
                                                 <img style="height: 50px;width: 50px" src="/public/images/video_thumbs/{{ $post->image_thumb }}">
                                             @else
@@ -71,8 +71,8 @@
                                     @endif
                                     <td>{{ $post->created_at }}</td>
                                     <td>
-                                        <form style="display: -webkit-inline-box;" action="{{ route('posts.destroy',Crypt::encrypt($post->id)) }}" method="POST">
-                                            <a href="{{ route('posts.edit',Crypt::encrypt($post->id)) }}" class="btn btn-datatable btn-icon btn-transparent-dark mr-2">
+                                        <form style="display: -webkit-inline-box;" action="{{ route('posts.destroy',UrlId::encrypt($post->id,Config::get('constants.posts'))) }}" method="POST">
+                                            <a href="{{ route('posts.edit',UrlId::encrypt($post->id,Config::get('constants.posts'))) }}" class="btn btn-datatable btn-icon btn-transparent-dark mr-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle>
                                                 </svg>
                                             </a>
@@ -82,7 +82,7 @@
                                                 <i class="far fa-trash-alt"></i>
                                             </button>
                                         </form>
-                                        <form style="display: -webkit-inline-box;" action="{{ route('posts.publish',Crypt::encrypt($post->id)) }}" method="POST">
+                                        <form style="display: -webkit-inline-box;" action="{{ route('posts.publish',UrlId::encrypt($post->id,Config::get('constants.posts'))) }}" method="POST">
                                             @csrf
                                             <button class="btn btn-datatable btn-icon btn-transparent-dark">
                                                 @if($post->is_publish == 0)

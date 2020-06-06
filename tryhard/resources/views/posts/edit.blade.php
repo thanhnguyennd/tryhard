@@ -24,11 +24,11 @@
             </div>
         @endif
 
-        <form action="{{ route('posts.update',$post->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('posts.update',UrlId::encrypt($post->id,Config::get('constants.posts'))) }}" method="POST" enctype="multipart/form-data">
+            @method('PATCH')
             @csrf
-            @method('PUT')
 
-             <div class="row">
+            <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Title:</strong>
@@ -36,16 +36,15 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Publish date:</strong>
-                        <input type='text' class="form-control" id='publish_date' name="publish_date" value="{{ $post->publish_date }}" />
-                        <script type="text/javascript">
-                            $( function() {
-                                $( "#publish_date" ).datepicker({dateFormat: "yy-mm-dd"});
-                            } );
-                        </script>
+                <div class="form-group">
+                    <div class="form-check">
+                        <label class="form-check-label" for="isPublish">
+                            <input class="form-check-input" id="isPublish" type="checkbox" value="" name="is_publish">
+                            <strong>Publish Enable</strong>
+                        </label>
                     </div>
                 </div>
+            </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Image:</strong>
@@ -72,7 +71,7 @@
 
         </form>
     </div>
-    <script src={{ asset("js/ckeditor.js") }} ></script>
+    <script src={{ asset("/public/js/ckeditor.js") }} ></script>
     <script>
         ClassicEditor
             .create( document.querySelector( '#editor' ), {

@@ -36,13 +36,12 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Publish date:</strong>
-                    <input type='text' class="form-control" id='publish_date' name="publish_date" />
-                    <script type="text/javascript">
-                        $( function() {
-                            $( "#publish_date" ).datepicker({dateFormat: "yy-mm-dd"});
-                        } );
-                    </script>
+                    <div class="form-check">
+                        <label class="form-check-label" for="isPublish">
+                            <input class="form-check-input" id="isPublish" type="checkbox" value="" name="is_publish">
+                            <strong>Publish Enable</strong>
+                        </label>
+                    </div>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -67,7 +66,7 @@
                     <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
-       <script src={{ asset("js/ckeditor.js") }} ></script>
+       <script src={{ asset("/public/js/ckeditor.js") }} ></script>
         <script>
             ClassicEditor
                 .create( document.querySelector( '#editor' ), {

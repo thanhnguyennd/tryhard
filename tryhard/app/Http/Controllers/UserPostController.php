@@ -84,7 +84,7 @@ class UserPostController extends Controller
      */
     public function show($id)
     {
-        $user_post = User_post::find(Crypt::decrypt($id));
+        $user_post = User_post::find(UrlId::decrypt($id));
         return view('user_posts.show',compact('user_post'));
     }
 
@@ -96,7 +96,7 @@ class UserPostController extends Controller
      */
     public function edit($id)
     {
-        $user_post = User_post::find(Crypt::decrypt($id));
+        $user_post = User_post::find(UrlId::decrypt($id));
         return view('user_posts.edit',compact('user_post'));
     }
 
@@ -107,7 +107,7 @@ class UserPostController extends Controller
      * @param  \App\User_post  $user_post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User_post $user_post)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'title' => 'required',
@@ -121,6 +121,7 @@ class UserPostController extends Controller
             request()->image_thumb->move(public_path('images/video_thumbs/'), $imageName);
             $data['image_thumb'] = $imageName;
         }
+        $user_post = User_post::find(UrlId::decrypt($id));
         $user_post->update($data);
 
         return redirect()->route('user_posts.index')
@@ -135,7 +136,7 @@ class UserPostController extends Controller
      */
     public function destroy($id)
     {
-        $user_post = User_post::find(Crypt::decrypt($id));
+        $user_post = User_post::find(UrlId::decrypt($id));
         if($user_post->user_id == Auth::user()->id){
             $image_path = "/images/image_thumb/".$user_post->image_thumb;  // Value is not URL but directory
             if(File::exists($image_path)) {
@@ -153,7 +154,7 @@ class UserPostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function publish(Request $request, $id){
-        $user_post = User_post::find(Crypt::decrypt($id));
+        $user_post = User_post::find(UrlId::decrypt($id));
         if($user_post->user_id == Auth::user()->id){
             $data = $request->all();
             $data['updated_at'] = new DateTime();

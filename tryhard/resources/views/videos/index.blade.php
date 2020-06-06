@@ -87,12 +87,12 @@
 						<div class="row">
 							<div class="col-sm-4 col-xs-3">
 								<div class="img-thumb">
-									<a href="{{ route('videos',$post->id) }}"><div class="fbt-resize" style="background-image: url(/public/images/video_thumbs/{{ $post->image_thumb }})"></div></a>
+									<a href="{{ route('videos',UrlId::encrypt($post->id,Config::get('constants.posts'))) }}"><div class="fbt-resize" style="background-image: url(/public/images/video_thumbs/{{ $post->image_thumb }})"></div></a>
 								</div>
 							</div>
 							<div class="col-sm-8 col-xs-9 no-padding-left">
 								<div class="post-content">
-									<a href="{{ route('videos',$post->id) }}"><h3>{{ $post->title }}</h3></a>
+									<a href="{{ route('videos',UrlId::encrypt($post->id,Config::get('constants.posts'))) }}"><h3>{{ $post->title }}</h3></a>
 									<div class="post-info clearfix">
 										<span>Mar 13, 2016</span>
 									</div>

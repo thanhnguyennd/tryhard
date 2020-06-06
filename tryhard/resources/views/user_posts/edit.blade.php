@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-   
+
 @section('content')
 <div class="container">
     <div class="card-body">
@@ -13,7 +13,7 @@
                 </div>
             </div>
         </div>
-       
+
         @if ($errors->any())
             <div class="alert alert-danger">
                 <strong>Whoops!</strong> There were some problems with your input.<br><br>
@@ -24,11 +24,11 @@
                 </ul>
             </div>
         @endif
-      
-        <form action="{{ route('user_posts.update',$user_post->id) }}" method="POST" enctype="multipart/form-data">
+
+        <form action="{{ route('user_posts.update',UrlId::encrypt($post->id,Config::get('constants.posts'))) }}) }}" method="POST" enctype="multipart/form-data">
             @csrf
-            @method('PUT')
-       
+            @method('PATCH')
+
              <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
@@ -54,12 +54,12 @@
                         <textarea class="form-control" style="height:150px" name="iframe_syntax" placeholder="iframe_syntax">{{ $user_post->iframe_syntax }}</textarea>
                     </div>
                 </div>
-                
+
                 <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>
-       
+
         </form>
     </div>
     <script src={{ asset("js/ckeditor.js") }} ></script>

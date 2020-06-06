@@ -26,13 +26,13 @@ Route::post('/postSearch', 'HomeController@postSearch')->name('home.search');
 
 Route::get('/videos/{id}', 'VideoController@index')->name('videos');
 
-
+//Route::resource('posts', 'PostController');
 Route::group(['prefix' => 'posts'], function () {
     Route::get('/', 'PostController@index')->name('posts.index');
     Route::get('create', 'PostController@create')->name('posts.create');
     Route::get('edit/{id}', 'PostController@edit')->name('posts.edit');
-    Route::post('update', 'PostController@update')->name('posts.update');
-    Route::get('show', 'PostController@show')->name('posts.show');
+    Route::patch('update/{id}', 'PostController@update')->name('posts.update');
+    Route::get('show/{id}', 'PostController@show')->name('posts.show');
     Route::post('store', 'PostController@store')->name('posts.store');
     Route::delete('destroy/{id}', 'PostController@destroy')->name('posts.destroy');
     Route::post('publish/{id}', 'PostController@publish')->name('posts.publish');
@@ -48,8 +48,8 @@ Route::group(['prefix' => 'user/posts'], function () {
     Route::get('/', 'UserPostController@index')->name('user_posts.index');
     Route::get('create', 'UserPostController@create')->name('user_posts.create');
     Route::get('edit/{id}', 'UserPostController@edit')->name('user_posts.edit');
-    Route::post('update', 'UserPostController@update')->name('user_posts.update');
-    Route::get('show', 'UserPostController@show')->name('user_posts.show');
+    Route::patch('update/{id}', 'UserPostController@update')->name('user_posts.update');
+    Route::get('show/{id}', 'UserPostController@show')->name('user_posts.show');
     Route::post('store', 'UserPostController@store')->name('user_posts.store');
     Route::delete('destroy/{id}', 'UserPostController@destroy')->name('user_posts.destroy');
     Route::post('publish/{id}', 'UserPostController@publish')->name('user_posts.publish');
@@ -60,7 +60,7 @@ Route::group(['prefix' => 'user/words'], function () {
     Route::get('create', 'UserWordController@create')->name('user_words.create');
     Route::get('edit/{id}', 'UserWordController@edit')->name('user_words.edit');
     Route::post('update', 'UserWordController@update')->name('user_words.update');
-    Route::get('show', 'UserWordController@show')->name('user_words.show');
+    Route::get('show/{id}', 'UserWordController@show')->name('user_words.show');
     Route::post('store', 'UserWordController@store')->name('user_words.store');
     Route::delete('destroy/{id}', 'UserWordController@destroy')->name('user_words.destroy');
     Route::post('search', 'UserWordController@search')->name('user_words.search');

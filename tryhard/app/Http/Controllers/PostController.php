@@ -71,6 +71,7 @@ class PostController extends Controller
             'image_thumb' => 'mimes:jpeg,png,jpg,gif,svg |max:2048',
         ]);
         $data = $request->all();
+        $data['is_publish'] = 1;
         if ($request->hasFile('image_thumb')) {
             $file_name = $this->unique_image(9);
             $imageName = $file_name.'.'.request()->image_thumb->getClientOriginalExtension();
@@ -96,7 +97,7 @@ class PostController extends Controller
         if(!$this->roleAdmin()){
             return redirect('/login');
         }
-        $post = Post::find(Crypt::decrypt($id));
+        $post = Post::find(UrlId::decrypt($id));
         return view('posts.show',compact('post'));
     }
 
@@ -111,7 +112,7 @@ class PostController extends Controller
         if(!$this->roleAdmin()){
             return redirect('/login');
         }
-        $post = Post::find(Crypt::decrypt($id));
+        $post = Post::find(UrlId::decrypt($id));
         return view('posts.edit',compact('post'));
     }
 
@@ -122,7 +123,7 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {
         if(!$this->roleAdmin()){
             return redirect('/login');
@@ -139,6 +140,7 @@ class PostController extends Controller
             request()->image_thumb->move(public_path('images/video_thumbs/'), $imageName);
             $data['image_thumb'] = $imageName;
         }
+        $post = Post::find(UrlId::decrypt($id));
         $post->update($data);
 
         return redirect()->route('posts.index')
@@ -156,7 +158,7 @@ class PostController extends Controller
         if(!$this->roleAdmin()){
             return redirect('/login');
         }
-        $post = Post::find(Crypt::decrypt($id));
+        $post = Post::find(UrlId::decrypt($id));
         $image_path = "/images/image_thumb/".$post->image_thumb;  // Value is not URL but directory
         if(File::exists($image_path)) {
             File::delete($image_path);
@@ -176,7 +178,7 @@ class PostController extends Controller
         if(!$this->roleAdmin()){
             return redirect('/login');
         }
-        $user_post = Post::find(Crypt::decrypt($id));
+        $user_post = Post::find(UrlId::decrypt($id));
         if($user_post->user_id == Auth::user()->id){
             $data = $request->all();
             $data['updated_at'] = new DateTime();
